@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário Completo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="title">Formulário de Cadastro</div>
+
+        <form class="row g-3" action="/cadastro/cliente" method="POST">
+
+            <!-- Dados Pessoais -->
+            <div class="section-title">Dados Pessoais</div>
+            <div class="col-md-6">
+                <label for="nome" class="form-label"><i class="fas fa-user"></i> Nome</label>
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome">
+            </div>
+            <div class="col-md-6">
+                <label for="data_nasc" class="form-label"><i class="fas fa-calendar-alt"></i> Data de Nascimento</label>
+                <input type="date" class="form-control" id="data_nasc" name="data_nasc">
+            </div>
+
+            <div class="col-md-6">
+                <label for="sexo" class="form-label"><i class="fas fa-venus-mars"></i> Sexo</label>
+                <select class="form-control" id="sexo" name="sexo">
+                    <option value="">Selecione</option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Feminino</option>
+                    <option value="Outro">Outro</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label for="telefone" class="form-label"><i class="fas fa-phone"></i> Telefone</label>
+                <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="(xx) xxxx-xxxx">
+            </div>
+            <div class="col-md-6">
+                <label for="email" class="form-label"><i class="fas fa-envelope"></i> Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="seu@email.com">
+            </div>
+            <div class="col-md-6">
+                <label for="endereco" class="form-label"><i class="fas fa-home"></i> Endereço</label>
+                <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Rua">
+            </div>
+            <div class="col-md-6">
+                <label for="numero_da_casa" class="form-label"><i class="fas fa-home"></i> Número da Casa</label>
+                <input type="text" class="form-control" id="numero_da_casa" name="numero_da_casa" placeholder="Número da casa">
+            </div>
+            <div class="col-md-6">
+                <label for="complemento" class="form-label"><i class="fas fa-pencil-alt"></i> Complemento</label>
+                <input type="text" class="form-control" id="complemento" name="complemento" placeholder="Apto, Bloco, etc.">
+            </div>
+
+            <div class="col-md-6">
+                <label for="bairro" class="form-label"><i class="fas fa-city"></i> Bairro</label>
+                <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro">
+            </div>
+
+            <div class="col-md-6">
+                <label for="cidade" class="form-label"><i class="fas fa-city"></i> Cidade</label>
+                <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade">
+            </div>
+
+            <div class="col-md-6">
+                <label for="estado" class="form-label"><i class="fas fa-map-marker-alt"></i> Estado</label>
+                <input type="text" class="form-control" id="estado" name="estado" placeholder="Estado">
+            </div>
+
+            <div class="col-md-6">
+                <label for="cep" class="form-label"><i class="fas fa-mail-bulk"></i> CEP</label>
+                <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP">
+            </div>
+
+            <div class="col-md-6">
+                <label for="telefone-res" class="form-label"><i class="fas fa-phone-alt"></i> Telefone Residencial</label>
+                <input type="tel" class="form-control" id="telefone-res" name="telefone_res" placeholder="(XX) XXXX-XXXX">
+            </div>
+
+            <div class="col-md-6">
+                <label for="telefone_emergencia" class="form-label"><i class="fas fa-phone"></i> Telefone de Emergência</label>
+                <input type="tel" class="form-control" id="telefone_emergencia" name="telefone_emergencia" placeholder="(XX) XXXX-XXXX">
+            </div>
+
+            <div class="col-md-6">
+                <label for="contato" class="form-label"><i class="fas fa-user"></i> Contato</label>
+                <input type="text" class="form-control" id="contato" name="contato" placeholder="Nome do contato">
+            </div>
+
+            <div class="col-md-6">
+                <label for="profissao" class="form-label"><i class="fas fa-briefcase"></i> Profissão</label>
+                <input type="text" class="form-control" id="profissao" name="profissao" placeholder="Sua profissão">
+            </div>
+
+            <!-- Dados Gerais -->
+            <div class="section-title">Dados Gerais</div>
+            <div class="col-md-6">
+                <label for="queixa_principal" class="form-label"><i class="fas fa-comment-dots"></i> Queixa Principal</label>
+                <input type="text" class="form-control" id="queixa_principal" name="queixa_principal" placeholder="Digite a queixa principal">
+            </div>
+            <div class="col-md-6">
+                <label for="frequencia_podologo" class="form-label"><i class="fas fa-calendar"></i> Frequência no Podólogo</label>
+                <select class="form-select" id="frequencia_podologo" name="frequencia_podologo">
+                    <option selected>Escolha...</option>
+                    <option>Semanal</option>
+                    <option>Mensal</option>
+                    <option>Semestral</option>
+                    <option>Nunca</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="medicamento" class="form-label"><i class="fas fa-pills"></i> Faz uso de algum medicamento?</label>
+                <select class="form-select" id="medicamento" name="medicamento">
+                    <option selected>Escolha...</option>
+                    <option>Sim</option>
+                    <option>Não</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="tipo_medicamento" class="form-label">Caso sim, qual?</label>
+                <input type="text" class="form-control" id="tipo_medicamento" name="tipo_medicamento" placeholder="Nome do medicamento">
+            </div>
+
+            <div class="col-md-6">
+                <label for="alergico" class="form-label">Alérgico algum medicamento?</label>
+                <select class="form-select" id="alergico" name="alergico">
+                    <option selected>Escolha...</option>
+                    <option>Sim</option>
+                    <option>Não</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label for="substancias_alergicas" class="form-label">Quais substâncias?</label>
+                <input type="text" class="form-control" id="substancias_alergicas" name="substancias_alergicas" placeholder="Digite quais substâncias">
+            </div>
+
+            <div class="col-md-6">
+                <label for="posicao_trabalho" class="form-label">Posição de trabalho:</label>
+                <select class="form-select" id="posicao_trabalho" name="posicao_trabalho">
+                    <option selected>Escolha...</option>
+                    <option>Em Pé</option>
+                    <option>Sentado</option>
+                    <option>Andando</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label for="duracao_trabalho" class="form-label">Duração em horas do trabalho:</label>
+                <input type="time" class="form-control" id="duracao_trabalho" name="duracao_trabalho">
+            </div>
+
+            <div class="col-md-6">
+                <label for="tempo_trabalho" class="form-label">Passa maior parte do tempo:</label>
+                <select class="form-select" id="tempo_trabalho" name="tempo_trabalho">
+                    <option selected>Escolha...</option>
+                    <option>Em Pé</option>
+                    <option>Sentado</option>
+                    <option>Caminhando</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label for="numero_calcado" class="form-label"><i class="fas fa-shoe-prints"></i> Número do calçado</label>
+                <input type="text" class="form-control" id="numero_calcado" name="numero_calçado" placeholder="Digite o número">
+            </div>
+            <div class="col-md-6">
+                <label for="tipo_calcado" class="form-label"><i class="fas fa-shoe-prints"></i> Tipo de calçado diário</label>
+                <select class="form-select" id="tipo_calcado" name="tipo_calçado">
+                    <option selected>Escolha...</option>
+                    <option>Bota</option>
+                    <option>Coturno</option>
+                    <option>Chinelo</option>
+                    <option>Sapatênis</option>
+                    <option>Sapato</option>
+                    <option>Sandália</option>
+                    <option>Salto</option>
+                    <option>Sapatilha</option>
+                    <option>Tênis</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="uso_palmilha" class="form-label"><i class="fas fa-shoe-prints"></i> Usa palmilha?</label>
+                <select class="form-select" id="uso_palmilha" name="uso_palmilha">
+                    <option selected>Escolha...</option>
+                    <option>Sim</option>
+                    <option>Não</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label for="tipo_palmilha" class="form-label">Se sim, qual?</label>
+                <select class="form-select" id="tipo_palmilha" name="tipo_palmilha">
+                    <option selected>Escolha...</option>
+                    <option>Ortopédica</option>
+                    <option>Descanso</option>
+                    <option>Nenhuma</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label for="fumante" class="form-label"><i class="fas fa-smoking"></i> É fumante?</label>
+                <select class="form-select" id="fumante" name="fumante">
+                    <option selected>Escolha...</option>
+                    <option>Sim</option>
+                    <option>Não</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label for="ciclo_menstrual" class="form-label">Ciclo Menstrual Regular?</label>
+                <select class="form-select" id="ciclo_menstrual" name="ciclo_menstrual">
+                    <option selected>Escolha...</option>
+                    <option>Sim</option>
+                    <option>Não</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label for="dum" class="form-label">DUM:</label>
+                <input type="date" class="form-control" id="dum" name="dum">
+            </div>
+
+            <div class="col-md-6">
+                <label for="gestante" class="form-label">Está gestante?</label>
+                <select class="form-select" id="gestante" name="gestante">
+                    <option selected>Escolha...</option>
+                    <option>Sim</option>
+                    <option>Não</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label for="amamentando" class="form-label">Está amamentando?</label>
+                <select class="form-select" id="amamentando" name="amamentando">
+                    <option selected>Escolha...</option>
+                    <option>Sim</option>
+                    <option>Não</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label for="pratica_atividade_fisica" class="form-label"><i class="fas fa-running"></i> Pratica atividade física?</label>
+                <select class="form-select" id="pratica_atividade_fisica" name="pratica_atividade_fisica">
+                    <option selected>Escolha...</option>
+                    <option>Sim</option>
+                    <option>Não</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label for="frequencia_atividade" class="form-label">Frequência?</label>
+                <select class="form-select" id="frequencia_atividade" name="frequencia_atividade">
+                    <option selected>Escolha...</option>
+                    <option>Diário</option>
+                    <option>Às vezes</option>
+                    <option>Nunca</option>
+                </select>
+            </div>
+
+            <!-- Esporte e Tipo de Calçado -->
+            <div class="col-md-6">
+                <label for="tipo_calcado_esporte" class="form-label">Qual esporte e tipo de calçado?</label>
+                <input type="text" class="form-control" id="tipo_calcado_esporte" name="tipo_calçado_esporte" placeholder="Digite esporte e tipo de calçado">
+            </div>
+
+            <!-- Dados Clínicos -->
+            <div class="section-title">Dados Clínicos</div>
+
+            <div class="col-md-6">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="osteoporose" name="osteoporose">
+                    <label class="form-check-label" for="osteoporose">Osteoporose</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="cardiopatia" name="cardiopatia">
+                    <label class="form-check-label" for="cardiopatia">Cardiopatia</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="marca_passo" name="marca_passo">
+                    <label class="form-check-label" for="marca_passo">Marca Passo</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="hipertiroidismo" name="hipertiroidismo">
+                    <label class="form-check-label" for="hipertiroidismo">Hipertiroidismo</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="hipotiroidismo" name="hipotiroidismo">
+                    <label class="form-check-label" for="hipotiroidismo">Hipotiroidismo</label>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="hipertensao" name="hipertensao">
+                    <label class="form-check-label" for="hipertensao">Hipertensão</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="hipotensao" name="hipotensao">
+                    <label class="form-check-label" for="hipotensao">Hipotensão</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="renal" name="renal">
+                    <label class="form-check-label" for="renal">Renal</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="neuropatia" name="neuropatia">
+                    <label class="form-check-label" for="neuropatia">Neuropatia</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="reumatismo" name="reumatismo">
+                    <label class="form-check-label" for="reumatismo">Reumatismo</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="alteracoes_vasculares" name="alteracoes_vasculares">
+                    <label class="form-check-label" for="alteracoes_vasculares">Alteração ou Comprometimento Vasculares</label>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="epilepsia" name="epilepsia">
+                    <label class="form-check-label" for="epilepsia">Epilepsia</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="hepatite" name="hepatite">
+                    <label class="form-check-label" for="hepatite">Hepatite</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="hanseniase" name="hanseniase">
+                    <label class="form-check-label" for="hanseniase">Hanseniase</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="quimioterapia_radioterapia" name="quimioterapia_radioterapia">
+                    <label class="form-check-label" for="quimioterapia_radioterapia">Quimioterapia / Radioterapia</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="antecedentes_oncologicos" name="antecedentes_oncologicos">
+                    <label class="form-check-label" for="antecedentes_oncologicos">Antecedentes Oncológicos</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="cirurgia_mmii" name="cirurgia_mmii">
+                    <label class="form-check-label" for="cirurgia_mmii">Cirurgia MMII</label>
+                </div>
+            </div>
+
+            <!-- Insulina e Dietas -->
+            <div class="col-md-6">
+                <label for="diabetes" class="form-label">Diabetes:</label>
+                <select class="form-select" id="diabetes" name="diabetes">
+                    <option selected>Escolha...</option>
+                    <option>Sim</option>
+                    <option>Não</option>
+                </select>
+
+                <label for="taxa_glicemica" class="form-label">Taxa Glicêmica:</label>
+                <input type="text" class="form-control" id="taxa_glicemica" name="taxa_glicemica" placeholder="Digite taxa glicêmica">
+
+                <label for="data-ultima_verificacao" class="form-label">Data da última verificação:</label>
+                <input type="date" class="form-control" id="data-ultima_verificacao" name="data_ultima_verificacao">
+            </div>
+
+            <div class="col-md-6">
+                <label for="insulina" class="form-label">Insulina:</label>
+                <select class="form-select" id="insulina" name="insulina">
+                    <option selected>Escolha...</option>
+                    <option>Não</option>
+                    <option>Injetável</option>
+                    <option>Via Oral</option>
+                </select>
+
+                <label for="dieta_hidrica" class="form-label">Dieta Hídrica:</label>
+                <select class="form-select" id="dieta_hidrica" name="dieta_hidrica">
+                    <option selected>Escolha...</option>
+                    <option>Sim</option>
+                    <option>Não</option>
+                </select>
+
+                <label for="dieta_alimentar" class="form-label">Dieta Alimentar:</label>
+                <select class="form-select" id="dieta_alimentar" name="dieta_alimentar">
+                    <option selected>Escolha...</option>
+                    <option>Sim</option>
+                    <option>Não</option>
+                </select>
+            </div>
+
+            <!-- Botão Enviar -->
+            <div class="col-md-12 text-center mt-4">
+                <a href="/unha/:id_cliente" class="btn btn-custom w-100">Próximo</a>
+            </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
