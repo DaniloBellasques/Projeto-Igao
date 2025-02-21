@@ -14,3 +14,10 @@ export const sequelize = new Sequelize(
 
 )
 
+sequelize.authenticate()
+  .then(() => console.log('✅ Conexão com o banco estabelecida com sucesso.'))
+  .catch((err) => console.error('❌ Erro ao conectar no banco:', err));
+
+sequelize.sync({ alter: true }) // Garante que a estrutura está alinhada
+  .then(() => console.log('✅ Tabelas sincronizadas com sucesso!'))
+  .catch((err) => console.error('❌ Erro ao sincronizar tabelas:', err));

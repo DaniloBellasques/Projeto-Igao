@@ -295,81 +295,27 @@ export const etapa1 = async (req: Request, res: Response): Promise<void> => {
 
 export const etapa1Post = async (req: Request, res: Response): Promise<void> => {
     try {
-        const {
-            nome,
-            endereco,
-            bairro,
-            cep,
-            data_nasc,
-            email,
-            telefone_res,
-            cidade,
-            estado,
-            sexo,
-            telefone_emergencia,
-            profissao,
-            queixa_principal,
-            frequencia_podologo,
-            medicamento,
-            alergico,
-            substancias_alergicas,
-            posicao_trabalho,
-            tempo_trabalho,
-            tipo_calçado,
-            uso_palmilha,
-            tipo_palmilha,
-            fumante,
-            ciclo_menstrual,
-            gestante,
-            amamentando,
-            pratica_atividade_fisica,
-            frequencia_atividade,
-            tipo_calçado_esporte,
-            telefone,
-            contato,
-            numero_da_casa,
-            complemento,
-            dum,
-            tipo_medicamento,
-            duracao_trabalho,
-            numero_calcado
-        } = req.body;
+        console.log("📌 Dados recebidos na Etapa 1:", req.body);
 
-        if (!nome || !endereco || !bairro || !cep || !data_nasc || !email) {
-            res.status(400).send("❌ Todos os campos obrigatórios devem ser preenchidos!");
-            return; // Impede que o código continue se houver erro
-        }
+        // Filtra os campos enviados para evitar valores `undefined`
+        const dadosCliente = Object.fromEntries(
+            Object.entries(req.body).filter(([_, value]) => value !== undefined && value !== "")
+        );
 
-        // 📌 Insere os dados no banco de dados
-        const query = `
-            INSERT INTO clientes (
-                nome, endereco, bairro, cep, data_nasc, email, telefone_res, cidade, estado, sexo,
-                telefone_emergencia, profissao, queixa_principal, frequencia_podologo, medicamento,
-                alergico, substancias_alergicas, posicao_trabalho, tempo_trabalho, tipo_calçado,
-                uso_palmilha, tipo_palmilha, fumante, ciclo_menstrual, gestante, amamentando,
-                pratica_atividade_fisica, frequencia_atividade, tipo_calçado_esporte, telefone,
-                contato, numero_da_casa, complemento, dum, tipo_medicamento, duracao_trabalho, numero_calcado
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        `;
+        // Armazena os dados na sessão sem salvar no banco ainda
+        req.session.dadosCliente = dadosCliente;
 
-        await db.promise().query(query, [
-            nome, endereco, bairro, cep, data_nasc, email, telefone_res, cidade, estado, sexo,
-            telefone_emergencia, profissao, queixa_principal, frequencia_podologo, medicamento,
-            alergico, substancias_alergicas, posicao_trabalho, tempo_trabalho, tipo_calçado,
-            uso_palmilha, tipo_palmilha, fumante, ciclo_menstrual, gestante, amamentando,
-            pratica_atividade_fisica, frequencia_atividade, tipo_calçado_esporte, telefone,
-            contato, numero_da_casa, complemento, dum, tipo_medicamento, duracao_trabalho, numero_calcado
-        ]);
+        console.log("✅ Dados da etapa 1 armazenados na sessão.", req.session.dadosCliente);
 
-        console.log("✅ Cliente cadastrado com sucesso!");
-
-        // 🔹 Redireciona para a próxima etapa
-        res.redirect('/etapa2');
+        res.redirect('/etapa2'); // Avança para a próxima etapa
     } catch (error) {
-        console.error("❌ Erro ao salvar no banco:", error);
-        res.status(500).send("Erro ao salvar os dados no banco.");
+        console.error("❌ Erro ao processar a Etapa 1:", error);
+        res.status(500).send("Erro ao processar os dados.");
     }
 };
+
+
+
 
 
 
@@ -381,14 +327,62 @@ export const etapa2 = (req: Request, res: Response) => {
 };
 
 export const etapa2Post = async (req: Request, res: Response) => {
-    // Processa os dados e avança para a próxima etapa
-    res.redirect('/finalizacao');
+    try {
+        console.log("📌 Dados recebidos na Etapa 2:", req.body);
+
+        // Filtra os campos enviados para evitar valores `undefined`
+        const dadosUnha = Object.fromEntries(
+            Object.entries(req.body).filter(([_, value]) => value !== undefined && value !== "")
+        );
+
+        // Armazena os dados da unha na sessão
+        req.session.dadosUnha = dadosUnha;
+
+        console.log("✅ Dados da etapa 2 armazenados na sessão.", req.session.dadosUnha);
+
+        res.redirect('/finalizacao'); // Avança para a finalização
+    } catch (error) {
+        console.error("❌ Erro ao processar a Etapa 2:", error);
+        res.status(500).send("Erro ao processar os dados.");
+    }
 };
 
 
 
+
 export const submit = async (req: Request, res: Response) => {
-    res.render('finalizacao'); // Certifique-se de que o arquivo existe em "views/"
+    try {
+        console.log("📌 Tentando salvar os dados da sessão no banco...");
+
+        // Recupera os dados da sessão (pode estar vazio)
+        const dadosCliente = req.session.dadosCliente || {};
+        const dadosUnha = req.session.dadosUnha || {};
+
+        // ✅ Cria o cliente no banco apenas com os dados fornecidos
+        const cliente = await Cliente.create(dadosCliente);
+
+        console.log("✅ Cliente cadastrado:", cliente.toJSON());
+
+        // Se houver dados de unha, vincula ao cliente e salva
+        if (Object.keys(dadosUnha).length > 0) {
+            const dadosUnhaFinal = {
+                ...dadosUnha,
+                id_cliente: cliente.id // Associa ao cliente recém-criado
+            };
+
+            await Unha.create(dadosUnhaFinal);
+            console.log("✅ Dados da Unha cadastrados:", dadosUnhaFinal);
+        }
+
+        // Limpa a sessão após salvar os dados
+        req.session.dadosCliente = undefined;
+        req.session.dadosUnha = undefined;
+
+        res.render('finalizacao'); // Exibe a tela final
+    } catch (error) {
+        console.error("❌ Erro ao salvar no banco:", error);
+        res.status(500).send("Erro ao salvar os dados.");
+    }
 };
 
 

@@ -18,3 +18,11 @@ router.get('/finalizacao', usuarioController.submit); // Página de finalizaçã
 router.get('/unha/:id_cliente', usuarioController.etapa2);
 
 export default router;
+import "express-session";
+
+declare module "express-session" {
+    interface SessionData {
+        dadosCliente?: any;
+        dadosUnha?: any;
+    }
+}
